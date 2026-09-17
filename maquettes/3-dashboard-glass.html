@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Maquette 3 — Dashboard Prestige</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --blue2:#3b6bff; --red:#ff3b5c; --green:#2ee6a6;
+    --tl:#cfe0ff; --tm:#7f93c2;
+  }
+  body { background:#04081a; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
+  #page {
+    width:1020px; height:720px; position:relative; overflow:hidden; border-radius:20px;
+    background:radial-gradient(circle at 15% 10%, rgba(59,107,255,.25), transparent 45%),
+               radial-gradient(circle at 90% 85%, rgba(255,59,92,.18), transparent 45%),
+               linear-gradient(160deg,#0a1230 0%, #050915 100%);
+    box-shadow:0 30px 90px rgba(0,0,0,.7); padding:30px;
+  }
+
+  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; }
+  .brand { font-family:'Oswald',sans-serif; font-weight:600; font-size:11px; letter-spacing:3px; color:var(--tm); text-transform:uppercase; }
+  .pill { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(10px); border-radius:20px; padding:6px 16px; font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:1.5px; color:var(--tl); }
+
+  .hero {
+    display:grid; grid-template-columns:1fr 1.3fr 1fr; align-items:center; gap:20px;
+    background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(16px);
+    border-radius:18px; padding:26px 34px; margin-bottom:20px;
+  }
+  .hero .team { text-align:center; font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; color:#fff; }
+  .hero .team.away { color:var(--tm); }
+  .hero .mid { text-align:center; }
+  .hero .score { font-family:'Bebas Neue',sans-serif; font-size:76px; background:linear-gradient(180deg,#fff,#c9d6ff); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1; }
+  .hero .sub { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-top:4px; }
+  .hero .ht { font-size:11px; color:var(--tm); margin-top:2px; }
+  .scorers { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+  .scorers span { background:rgba(59,107,255,.18); border:1px solid rgba(59,107,255,.35); color:var(--tl); font-size:10.5px; font-family:'Oswald',sans-serif; padding:3px 9px; border-radius:10px; }
+
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .glass { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); border-radius:16px; padding:18px 20px; }
+  .glass h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--tm); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .glass h3 .ic { width:7px; height:7px; border-radius:50%; background:var(--blue2); box-shadow:0 0 8px var(--blue2); }
+  .glass p { font-size:12px; line-height:1.6; color:var(--tl); }
+
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .stat-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); border-radius:16px; padding:16px 20px; }
+  .stat-card h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--tm); margin-bottom:10px; }
+  .stat-item { display:flex; gap:10px; margin-bottom:10px; align-items:flex-start; }
+  .stat-item .ic { width:8px; height:8px; border-radius:50%; margin-top:4px; flex-shrink:0; background:var(--green); box-shadow:0 0 8px var(--green); }
+  .stat-card.axes .stat-item .ic { background:var(--red); box-shadow:0 0 8px var(--red); }
+  .stat-item .t { font-family:'Oswald',sans-serif; font-weight:600; font-size:12.5px; color:#fff; }
+  .stat-item .d { font-size:11px; color:var(--tm); line-height:1.5; }
+
+  .synth {
+    margin-top:16px; background:linear-gradient(90deg, rgba(255,59,92,.18), rgba(59,107,255,.12));
+    border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); border-radius:16px; padding:14px 22px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .synth .lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:11px; letter-spacing:2px; color:#fff; text-transform:uppercase; flex-shrink:0; }
+  .synth p { font-size:12.5px; color:var(--tl); line-height:1.5; }
+</style>
+</head>
+<body>
+<div id="page">
+  <div class="top">
+    <div class="brand">Racing Mutest Académie · U17 National</div>
+    <div class="pill">Journée 6 · Saison 2025–2026</div>
+  </div>
+
+  <div class="hero">
+    <div class="team">RCSA</div>
+    <div class="mid">
+      <div class="score">3 – 1</div>
+      <div class="sub">Victoire</div>
+      <div class="ht">Mi-temps 1–0</div>
+      <div class="scorers"><span>⚽ Polo</span><span>⚽ Polo</span><span>⚽ Gribi</span></div>
+    </div>
+    <div class="team away">FC Metz</div>
+  </div>
+
+  <div class="row">
+    <div class="glass"><h3><span class="ic"></span>1ère période</h3><p>Très bonne entame avec un pressing haut efficace qui étouffe l'adversaire. Vous ouvrez le score sur contre-attaque.</p></div>
+    <div class="glass"><h3><span class="ic"></span>2ème période</h3><p>Période plus compliquée où Metz revient au score. Vous vous libérez en fin de match avec deux buts supplémentaires.</p></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <h3>Points positifs</h3>
+      <div class="stat-item"><div class="ic"></div><div><div class="t">Pressing haut dominant</div><div class="d">Occasions créées sur transition dès la 1ère période.</div></div></div>
+      <div class="stat-item"><div class="ic"></div><div><div class="t">Efficacité offensive</div><div class="d">Trois buts pour dominer Metz malgré les difficultés.</div></div></div>
+      <div class="stat-item"><div class="ic"></div><div><div class="t">Gestion du match</div><div class="d">Bonne adaptation face au retour de l'adversaire.</div></div></div>
+    </div>
+    <div class="stat-card axes">
+      <h3>Axes d'amélioration</h3>
+      <div class="stat-item"><div class="ic"></div><div><div class="t">Organisation défensive</div><div class="d">La chute de régime en 2ème période fragilise le bloc.</div></div></div>
+      <div class="stat-item"><div class="ic"></div><div><div class="t">Continuité dans l'effort</div><div class="d">Maintenir l'intensité sur les 90 minutes.</div></div></div>
+    </div>
+  </div>
+
+  <div class="synth">
+    <div class="lbl">Synthèse</div>
+    <p>Victoire méritée face à une équipe accrocheuse. Continuez à travailler la solidité défensive pour éviter le suspense en fin de match.</p>
+  </div>
+</div>
+</body>
+</html>

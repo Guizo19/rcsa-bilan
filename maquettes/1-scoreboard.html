@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Maquette 1 — Scoreboard Broadcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --blue:#002569; --blue2:#0038A8; --red:#E0001B; --dark:#00102e;
+    --tl:#C4D6EE; --tm:#8CA6CC; --green:#22c55e;
+  }
+  body { background:#0a1428; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
+  #page { width:1020px; height:720px; background:var(--dark); position:relative; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+
+  .topbar { height:8px; background:linear-gradient(90deg,var(--red) 0%,var(--red) 60%,var(--blue2) 60%,var(--blue2) 100%); }
+
+  .score-band {
+    background:var(--blue); position:relative; padding:26px 40px; display:flex; align-items:center; justify-content:space-between; overflow:hidden;
+  }
+  .score-band::after { content:''; position:absolute; top:0; right:0; bottom:0; width:220px; background:var(--red); clip-path:polygon(35% 0,100% 0,100% 100%,0% 100%); opacity:.9; }
+  .sb-team { position:relative; z-index:2; text-align:center; flex:1; }
+  .sb-team .name { font-family:'Bebas Neue',sans-serif; font-size:38px; color:#fff; letter-spacing:1px; }
+  .sb-team.away .name { color:rgba(255,255,255,.55); }
+  .sb-score { position:relative; z-index:2; display:flex; align-items:center; gap:18px; padding:0 30px; }
+  .sb-score .n { font-family:'Bebas Neue',sans-serif; font-size:96px; color:#fff; line-height:1; }
+  .sb-score .dash { font-family:'Bebas Neue',sans-serif; font-size:50px; color:rgba(255,255,255,.4); }
+  .sb-meta { position:relative; z-index:3; text-align:right; }
+  .sb-badge { display:inline-block; background:#fff; color:var(--red); font-family:'Oswald',sans-serif; font-weight:800; font-size:11px; letter-spacing:2px; padding:5px 14px; border-radius:2px; margin-bottom:6px; }
+  .sb-sub { font-family:'Oswald',sans-serif; font-size:12px; color:rgba(255,255,255,.85); letter-spacing:1px; }
+
+  .scorers-strip { background:#050c1e; padding:12px 40px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .scorers-strip .lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:2px; color:var(--red); text-transform:uppercase; }
+  .scorers-strip .names { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; color:var(--tl); }
+  .scorers-strip .dot { width:4px; height:4px; border-radius:50%; background:var(--tm); }
+
+  .grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:rgba(255,255,255,.06); padding:1px; height:340px; }
+  .cell { background:var(--dark); padding:20px 22px; }
+  .cell h3 { font-family:'Oswald',sans-serif; font-weight:700; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--tm); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .cell h3 .bar { width:16px; height:3px; background:var(--blue2); }
+  .cell.pos h3 .bar { background:var(--green); }
+  .cell.axe h3 .bar { background:var(--red); }
+  .cell p.period { font-size:12.5px; line-height:1.65; color:var(--tl); margin-bottom:14px; }
+  .cell p.period b { color:#fff; font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:1px; display:block; margin-bottom:4px; text-transform:uppercase; }
+  .item { margin-bottom:12px; }
+  .item .t { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--green); margin-bottom:2px; }
+  .cell.axe .item .t { color:#f87171; }
+  .item .d { font-size:11.5px; color:var(--tm); line-height:1.5; }
+
+  .synth-band { background:var(--red); padding:16px 40px; display:flex; align-items:center; gap:16px; }
+  .synth-band .lbl { font-family:'Bebas Neue',sans-serif; font-size:20px; color:#fff; letter-spacing:1px; flex-shrink:0; }
+  .synth-band p { font-family:'Inter',sans-serif; font-size:13px; color:rgba(255,255,255,.92); line-height:1.5; }
+</style>
+</head>
+<body>
+<div id="page">
+  <div class="topbar"></div>
+  <div class="score-band">
+    <div class="sb-team home"><div class="name">RCSA</div></div>
+    <div class="sb-score"><span class="n">3</span><span class="dash">—</span><span class="n">1</span></div>
+    <div class="sb-team away"><div class="name">FC Metz</div></div>
+    <div class="sb-meta">
+      <div class="sb-badge">VICTOIRE</div>
+      <div class="sb-sub">U17 National · J6 · Mi-temps 1–0</div>
+    </div>
+  </div>
+  <div class="scorers-strip">
+    <span class="lbl">Buteurs</span>
+    <span class="names">Polo</span><span class="dot"></span>
+    <span class="names">Polo</span><span class="dot"></span>
+    <span class="names">Gribi</span>
+  </div>
+  <div class="grid">
+    <div class="cell">
+      <h3><span class="bar"></span>Analyse du match</h3>
+      <p class="period"><b>1ère période</b>Très bonne entame avec un pressing haut efficace qui étouffe l'adversaire. Vous ouvrez le score sur contre-attaque.</p>
+      <p class="period"><b>2ème période</b>Période plus compliquée où Metz revient au score. Vous vous libérez en fin de match avec deux buts supplémentaires.</p>
+    </div>
+    <div class="cell pos">
+      <h3><span class="bar"></span>Points positifs</h3>
+      <div class="item"><div class="t">Pressing haut dominant</div><div class="d">Très efficace en 1ère période, vous étouffez l'adversaire et créez des occasions.</div></div>
+      <div class="item"><div class="t">Efficacité offensive</div><div class="d">Trois buts pour dominer Metz malgré les difficultés en 2ème mi-temps.</div></div>
+      <div class="item"><div class="t">Gestion du match</div><div class="d">Vous maîtrisez l'engagement et savez vous adapter quand l'adversaire revient au score.</div></div>
+    </div>
+    <div class="cell axe">
+      <h3><span class="bar"></span>Axes d'amélioration</h3>
+      <div class="item"><div class="t">Organisation défensive</div><div class="d">La chute de régime en 2ème période fragilise le bloc défensif.</div></div>
+      <div class="item"><div class="t">Continuité dans l'effort</div><div class="d">Maintenir le même niveau d'intensité sur les 90 minutes.</div></div>
+    </div>
+  </div>
+  <div class="synth-band">
+    <div class="lbl">SYNTHÈSE</div>
+    <p>Victoire méritée face à une équipe accrocheuse. Continuez à travailler la solidité défensive pour éviter le suspense en fin de match.</p>
+  </div>
+</div>
+</body>
+</html>

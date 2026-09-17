@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Maquette 2 — Rapport Éditorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --blue:#002569; --blue2:#0038A8; --red:#E0001B;
+    --ink:#0f172a; --grey:#5b6472; --line:#dde3ec; --paper:#ffffff; --wash:#f4f6fa;
+  }
+  body { background:#e8ecf3; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
+  #page { width:1020px; height:720px; background:var(--paper); position:relative; box-shadow:0 30px 80px rgba(0,0,0,.25); padding:44px 52px; }
+
+  .masthead { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px; }
+  .masthead .club { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; color:var(--red); text-transform:uppercase; }
+  .masthead h1 { font-family:'Oswald',sans-serif; font-weight:600; font-size:26px; color:var(--ink); margin-top:4px; }
+  .masthead .meta { text-align:right; font-size:12px; color:var(--grey); line-height:1.6; }
+  .masthead .meta b { color:var(--ink); }
+
+  .score-row { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:12px 0 16px; border-bottom:1px solid var(--line); margin-bottom:16px; }
+  .team-name { font-family:'Oswald',sans-serif; font-weight:600; font-size:22px; color:var(--ink); }
+  .team-name.away { text-align:right; color:var(--grey); }
+  .score-center { text-align:center; padding:0 40px; }
+  .score-center .num { font-family:'Oswald',sans-serif; font-weight:700; font-size:56px; color:var(--ink); letter-spacing:2px; }
+  .score-center .tag { font-family:'Oswald',sans-serif; font-weight:600; font-size:11px; letter-spacing:2px; color:var(--red); text-transform:uppercase; margin-top:2px; }
+  .score-center .ht { font-size:11px; color:var(--grey); margin-top:2px; }
+
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:14px; }
+  .col h2 { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--ink); border-bottom:2px solid var(--ink); padding-bottom:5px; margin-bottom:8px; }
+  .col p { font-size:12.5px; line-height:1.6; color:#334; margin-bottom:8px; }
+  .col p b { font-family:'Oswald',sans-serif; font-size:10.5px; letter-spacing:1px; color:var(--grey); text-transform:uppercase; display:block; margin-bottom:2px; }
+
+  .lists { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:14px; }
+  .lists h2 { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:6px; }
+  .lists ul { list-style:none; }
+  .lists li { display:flex; gap:10px; padding:6px 0; border-bottom:1px solid var(--line); }
+  .lists li .idx { font-family:'Oswald',sans-serif; font-weight:700; font-size:11px; color:#fff; background:#16a34a; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .lists .axes li .idx { background:var(--red); }
+  .lists li .txt .t { font-family:'Oswald',sans-serif; font-weight:600; font-size:12.5px; color:var(--ink); }
+  .lists li .txt .d { font-size:11.5px; color:var(--grey); line-height:1.5; margin-top:2px; }
+
+  .footer-note { background:var(--wash); border-left:4px solid var(--blue2); padding:12px 16px; }
+  .footer-note .lbl { font-family:'Oswald',sans-serif; font-weight:600; font-size:10px; letter-spacing:2px; color:var(--blue2); text-transform:uppercase; margin-bottom:3px; }
+  .footer-note p { font-size:12.5px; color:var(--ink); line-height:1.5; }
+</style>
+</head>
+<body>
+<div id="page">
+  <div class="masthead">
+    <div>
+      <div class="club">Racing Mutest Académie</div>
+      <h1>Rapport de match</h1>
+    </div>
+    <div class="meta"><b>U17 National</b> — Journée 6<br>Saison 2025 – 2026</div>
+  </div>
+
+  <div class="score-row">
+    <div class="team-name">RCSA</div>
+    <div class="score-center">
+      <div class="num">3 – 1</div>
+      <div class="tag">Victoire</div>
+      <div class="ht">Mi-temps 1–0 · Buteurs : Polo, Polo, Gribi</div>
+    </div>
+    <div class="team-name away">FC Metz</div>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <h2>1ère période</h2>
+      <p>Très bonne entame avec un pressing haut efficace qui étouffe l'adversaire. Vous ouvrez le score sur contre-attaque, montrant de la maturité tactique et de la réactivité.</p>
+    </div>
+    <div class="col">
+      <h2>2ème période</h2>
+      <p>Période plus compliquée où Metz revient au score. Vous vous libérez en fin de match avec deux buts supplémentaires.</p>
+    </div>
+  </div>
+
+  <div class="lists">
+    <div class="pos">
+      <h2>Points positifs</h2>
+      <ul>
+        <li><span class="idx">1</span><div class="txt"><div class="t">Pressing haut dominant</div><div class="d">Très efficace en 1ère période, occasions créées sur transition.</div></div></li>
+        <li><span class="idx">2</span><div class="txt"><div class="t">Efficacité offensive</div><div class="d">Trois buts pour dominer Metz malgré les difficultés.</div></div></li>
+        <li><span class="idx">3</span><div class="txt"><div class="t">Gestion du match</div><div class="d">Bonne adaptation quand l'adversaire revient au score.</div></div></li>
+      </ul>
+    </div>
+    <div class="axes">
+      <h2>Axes d'amélioration</h2>
+      <ul>
+        <li><span class="idx">1</span><div class="txt"><div class="t">Organisation défensive</div><div class="d">La chute de régime en 2ème période fragilise le bloc.</div></div></li>
+        <li><span class="idx">2</span><div class="txt"><div class="t">Continuité dans l'effort</div><div class="d">Maintenir l'intensité sur les 90 minutes.</div></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <div class="lbl">Synthèse</div>
+    <p>Victoire méritée face à une équipe accrocheuse. Continuez à travailler la solidité défensive pour éviter le suspense en fin de match.</p>
+  </div>
+</div>
+</body>
+</html>
