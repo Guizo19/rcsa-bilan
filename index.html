@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root {
@@ -162,7 +164,7 @@ On arrache la victoire en fin de match.
       <div class="panel-title">Fiche générée</div>
       <div style="display:flex;gap:8px;">
         <button class="btn-sm btn-edit-sm" id="btn-edit" onclick="toggleEdit()" disabled>✏️ Éditer</button>
-        <button class="btn-sm btn-print-sm" id="btn-print" onclick="exportPDF()" disabled>🖨️ Exporter PDF</button>
+        <button class="btn-sm btn-print-sm" id="btn-print" onclick="createPDF()" disabled>📄 Créer PDF</button>
       </div>
     </div>
 
@@ -315,74 +317,38 @@ async function generate() {
   }
 }
 
-function exportPDF() {
+async function createPDF() {
   const fiche = document.getElementById('fiche');
   if (!fiche) return;
 
-  const ficheHTML = fiche.outerHTML;
-  const printHTML = `<!DOCTYPE html>
-<html lang="fr"><head>
-<meta charset="UTF-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  :root{--blue:#002569;--blue2:#0038A8;--red:#E0001B;--dark:#00102e;--tl:#C4D6EE;--tm:#6A8BB0;--green:#22c55e;--surf:rgba(255,255,255,0.035);--bdr:rgba(255,255,255,0.07);}
-  html,body{background:#00102e;width:297mm;height:210mm;margin:0;padding:0;}
-  @page{size:A4 landscape;margin:0;}
-  .print-hint{font-family:sans-serif;font-size:13px;color:#555;text-align:center;padding:10px;background:#f0f0f0;}
-  @media print{.print-hint{display:none;}}
-  #fiche{width:297mm!important;min-height:210mm!important;display:block!important;position:relative;overflow:hidden;background:#00102e;}
-  .bg-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
-  .fiche-layout{position:relative;z-index:2;display:grid;grid-template-columns:248px 1fr;min-height:210mm;}
-  .fL{background:var(--blue);padding:0 18px 22px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden;}
-  .fL-top{height:5px;background:var(--red);margin:0 -18px 0 -22px;}
-  .fL-cut{position:absolute;top:0;right:-1px;bottom:0;width:34px;background:var(--dark);clip-path:polygon(60% 0,100% 0,100% 100%,60% 100%);z-index:3;}
-  .fL-inner{padding-top:18px;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;}
-  .fbadge{display:inline-block;background:var(--red);font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;letter-spacing:2px;padding:4px 12px 3px;margin-bottom:14px;clip-path:polygon(0 0,94% 0,100% 100%,0 100%);color:#fff;}
-  .fhome{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#fff;}
-  .fvs{font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;color:var(--red);letter-spacing:3px;margin:5px 0 3px;}
-  .faway{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:rgba(255,255,255,.42);line-height:1;}
-  .fscore-row{display:flex;align-items:baseline;gap:8px;margin:16px 0 4px;}
-  .fscore{font-family:'Bebas Neue',sans-serif;font-size:84px;line-height:1;color:#fff;}
-  .fscore-info{font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;color:rgba(255,255,255,.42);line-height:1.6;}
-  .fsep{height:1px;background:rgba(255,255,255,.1);margin:13px 0;}
-  .flbl{font-family:'Oswald',sans-serif;font-weight:700;font-size:9px;letter-spacing:2.5px;color:var(--red);text-transform:uppercase;margin-bottom:5px;}
-  .fscorers{font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;color:rgba(255,255,255,.78);line-height:2;}
-  .fL-foot{margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.09);}
-  .ffval{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;color:rgba(255,255,255,.5);margin-bottom:2px;}
-  .fR{padding:20px 22px 18px 36px;display:flex;flex-direction:column;gap:11px;}
-  .fsh{display:flex;align-items:center;gap:7px;margin-bottom:6px;}
-  .fsh-bar{width:3px;height:15px;flex-shrink:0;}
-  .fsh-bar.r{background:var(--red);}.fsh-bar.b{background:var(--blue2);}.fsh-bar.g{background:var(--green);}
-  .fsh-t{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.58);}
-  .fperiods{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  .fperiod{background:var(--surf);border:1px solid var(--bdr);border-top:3px solid var(--blue2);padding:10px 11px 9px;}
-  .fplbl{font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;color:var(--tm);text-transform:uppercase;margin-bottom:6px;}
-  .fperiod p{font-size:11.5px;line-height:1.6;color:var(--tl);}
-  .fbottom{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;}
-  .fcol{background:var(--surf);border:1px solid var(--bdr);padding:11px;}
-  .fitem{display:flex;align-items:flex-start;gap:6px;margin-bottom:8px;}
-  .fdot{width:5px;height:5px;border-radius:50%;margin-top:4px;flex-shrink:0;}
-  .fdot.g{background:var(--green);}.fdot.r{background:var(--red);}
-  .fititle{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;color:var(--green);margin-bottom:2px;}
-  .fititle.r{color:#f87171;}
-  .fitext{font-size:11px;color:var(--tm);line-height:1.45;}
-  .fsynth{background:var(--red);padding:10px 14px 9px;clip-path:polygon(0 0,100% 0,97.5% 100%,0 100%);}
-  .fsynth-lbl{font-family:'Oswald',sans-serif;font-weight:700;font-size:9px;letter-spacing:2.5px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:3px;}
-  .fsynth p{font-size:12px;line-height:1.55;color:rgba(255,255,255,.92);}
-  .fbot-bar{position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--red);z-index:10;}
-</style></head>
-<body>
-<div class="print-hint">Cmd+P (ou Ctrl+P) → <strong>Enregistrer en PDF</strong> → Format <strong>A4 Paysage</strong></div>
-${ficheHTML}
-<script>document.fonts.ready.then(()=>setTimeout(()=>window.print(),500));<\/script>
-</body></html>`;
+  const btn = document.getElementById('btn-print');
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Génération…';
 
-  const win = window.open('', '_blank');
-  if (win) { win.document.write(printHTML); win.document.close(); }
-  else alert('Autorise les popups dans ton navigateur.');
+  try {
+    await document.fonts.ready;
+
+    const canvas = await html2canvas(fiche, {
+      scale: 2,
+      backgroundColor: '#00102e',
+      useCORS: true
+    });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pageWidth, pageHeight);
+
+    const away = (document.getElementById('f-away')?.textContent || 'match').trim().replace(/[^\w-]+/g, '_');
+    pdf.save(`bilan-RCSA-vs-${away}.pdf`);
+  } catch (err) {
+    alert('Erreur lors de la création du PDF : ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
 }
 
 function toggleEdit() {
