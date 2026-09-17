@@ -66,55 +66,58 @@
   .empty-icon { font-size:44px; opacity:.25; }
   .empty-text { font-size:13px; line-height:1.6; max-width:260px; }
 
-  /* ── FICHE ── */
-  #fiche { width:1020px; min-height:720px; background:var(--dark); position:relative; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.7); flex-shrink:0; display:none; }
+  /* ── FICHE : Dashboard Prestige ── */
+  #fiche {
+    width:1020px; min-height:720px; border-radius:20px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(59,107,255,.25), transparent 45%),
+      radial-gradient(circle at 90% 85%, rgba(224,0,27,.18), transparent 45%),
+      linear-gradient(160deg,#0a1230 0%, #050915 100%);
+    box-shadow:0 20px 60px rgba(0,0,0,.7); flex-shrink:0; display:none; padding:30px;
+  }
   #fiche.visible { display:block; }
-  .bg-svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-  .fiche-layout { position:relative; z-index:2; display:grid; grid-template-columns:248px 1fr; min-height:720px; }
 
-  .fL { background:var(--blue); padding:0 18px 22px 22px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
-  .fL-top { height:5px; background:var(--red); margin:0 -18px 0 -22px; }
-  .fL-cut { position:absolute; top:0; right:-1px; bottom:0; width:34px; background:var(--dark); clip-path:polygon(60% 0,100% 0,100% 100%,60% 100%); z-index:3; }
-  .fL-inner { padding-top:18px; position:relative; z-index:2; flex:1; display:flex; flex-direction:column; }
+  .f-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; }
+  .f-brand { font-family:'Oswald',sans-serif; font-weight:600; font-size:11px; letter-spacing:3px; color:var(--tm); text-transform:uppercase; }
+  .f-pill { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:6px 16px; font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:1.5px; color:var(--tl); }
 
-  .fbadge { display:inline-block; background:var(--red); font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:2px; padding:4px 12px 3px; margin-bottom:14px; clip-path:polygon(0 0,94% 0,100% 100%,0 100%); }
-  .fhome { font-family:'Bebas Neue',sans-serif; font-size:36px; line-height:1; color:#fff; letter-spacing:1px; }
-  .fvs { font-family:'Oswald',sans-serif; font-weight:600; font-size:10px; color:var(--red); letter-spacing:3px; margin:5px 0 3px; }
-  .faway { font-family:'Oswald',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.42); line-height:1; }
-  .fscore-row { display:flex; align-items:baseline; gap:8px; margin:16px 0 4px; }
-  .fscore { font-family:'Bebas Neue',sans-serif; font-size:84px; line-height:1; color:#fff; }
-  .fscore-info { font-family:'Oswald',sans-serif; font-weight:500; font-size:12px; color:rgba(255,255,255,.42); line-height:1.6; }
-  .fsep { height:1px; background:rgba(255,255,255,.1); margin:13px 0; }
-  .flbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:2.5px; color:var(--red); text-transform:uppercase; margin-bottom:5px; }
-  .fscorers { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; color:rgba(255,255,255,.78); line-height:2; }
-  .fL-foot { margin-top:auto; padding-top:12px; border-top:1px solid rgba(255,255,255,.09); }
-  .ffval { font-family:'Oswald',sans-serif; font-weight:600; font-size:11px; color:rgba(255,255,255,.5); margin-bottom:2px; }
+  .f-hero {
+    display:grid; grid-template-columns:1fr 1.3fr 1fr; align-items:center; gap:20px;
+    background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.08);
+    border-radius:18px; padding:26px 34px; margin-bottom:20px;
+  }
+  .f-team { text-align:center; font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; color:#fff; }
+  .f-team.away { color:var(--tm); }
+  .f-mid { text-align:center; }
+  .f-scoreval { font-family:'Bebas Neue',sans-serif; font-size:76px; color:#fff; line-height:1; }
+  .f-sub { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-top:4px; }
+  .f-htline { font-size:11px; color:var(--tm); margin-top:2px; }
+  .f-scorers { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+  .f-scorers span { background:rgba(0,56,168,.25); border:1px solid rgba(0,56,168,.45); color:var(--tl); font-size:10.5px; font-family:'Oswald',sans-serif; padding:3px 9px; border-radius:10px; }
 
-  .fR { padding:20px 22px 18px 36px; display:flex; flex-direction:column; gap:11px; }
-  .fsh { display:flex; align-items:center; gap:7px; margin-bottom:6px; }
-  .fsh-bar { width:3px; height:15px; flex-shrink:0; }
-  .fsh-bar.r{background:var(--red);} .fsh-bar.b{background:var(--blue2);} .fsh-bar.g{background:var(--green);}
-  .fsh-t { font-family:'Oswald',sans-serif; font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.58); }
+  .f-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .f-glass { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px 20px; }
+  .f-glass h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--tm); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .f-glass h3 .f-ic { width:7px; height:7px; border-radius:50%; background:var(--blue2); box-shadow:0 0 8px var(--blue2); }
+  .f-glass p { font-size:12px; line-height:1.6; color:var(--tl); }
 
-  .fperiods { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .fperiod { background:var(--surf); border:1px solid var(--bdr); border-top:3px solid var(--blue2); padding:10px 11px 9px; }
-  .fplbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:1.5px; color:var(--tm); text-transform:uppercase; margin-bottom:6px; }
-  .fperiod p { font-size:11.5px; line-height:1.6; color:var(--tl); }
+  .f-stats { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .f-stat-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px 20px; }
+  .f-stat-card h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--tm); margin-bottom:10px; }
+  .f-stat-item { display:flex; gap:10px; margin-bottom:10px; align-items:flex-start; }
+  .f-stat-item:last-child { margin-bottom:0; }
+  .f-stat-item .f-ic { width:8px; height:8px; border-radius:50%; margin-top:4px; flex-shrink:0; background:var(--green); box-shadow:0 0 8px var(--green); }
+  .f-stat-card.axes .f-stat-item .f-ic { background:var(--red); box-shadow:0 0 8px var(--red); }
+  .f-stat-item .f-t { font-family:'Oswald',sans-serif; font-weight:600; font-size:12.5px; color:#fff; }
+  .f-stat-item .f-d { font-size:11px; color:var(--tm); line-height:1.5; }
 
-  .fbottom { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; }
-  .fcol { background:var(--surf); border:1px solid var(--bdr); padding:11px; }
-  .fitem { display:flex; align-items:flex-start; gap:6px; margin-bottom:8px; }
-  .fitem:last-child{margin-bottom:0;}
-  .fdot { width:5px; height:5px; border-radius:50%; margin-top:4px; flex-shrink:0; }
-  .fdot.g{background:var(--green);} .fdot.r{background:var(--red);}
-  .fititle { font-family:'Oswald',sans-serif; font-weight:700; font-size:12px; color:var(--green); margin-bottom:2px; }
-  .fititle.r{color:#f87171;}
-  .fitext { font-size:11px; color:var(--tm); line-height:1.45; }
-
-  .fsynth { background:var(--red); padding:10px 14px 9px; clip-path:polygon(0 0,100% 0,97.5% 100%,0 100%); }
-  .fsynth-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:2.5px; color:rgba(255,255,255,.5); text-transform:uppercase; margin-bottom:3px; }
-  .fsynth p { font-size:12px; line-height:1.55; color:rgba(255,255,255,.92); }
-  .fbot-bar { position:absolute; bottom:0; left:0; right:0; height:5px; background:var(--red); z-index:10; }
+  .f-synth {
+    margin-top:16px; background:linear-gradient(90deg, rgba(224,0,27,.18), rgba(0,56,168,.14));
+    border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:14px 22px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .f-synth .f-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:11px; letter-spacing:2px; color:#fff; text-transform:uppercase; flex-shrink:0; }
+  .f-synth p { font-size:12.5px; color:var(--tl); line-height:1.5; }
 
   body.edit-on [contenteditable="true"] { outline:1px dashed rgba(80,140,255,.35); border-radius:2px; cursor:text; min-height:1em; }
   body.edit-on [contenteditable="true"]:focus { outline:1px solid rgba(80,140,255,.8); background:rgba(80,140,255,.05); }
@@ -174,72 +177,42 @@ On arrache la victoire en fin de match.
     </div>
 
     <div id="fiche">
-      <svg class="bg-svg" viewBox="0 0 1020 720" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="520,0 1020,0 1020,720 700,720" fill="rgba(0,37,105,0.45)"/>
-        <polygon points="618,0 656,0 1020,510 982,510" fill="rgba(0,56,168,0.22)"/>
-        <polygon points="726,0 744,0 1020,318 1002,318" fill="rgba(0,56,168,0.16)"/>
-        <polygon points="830,0 843,0 1020,178 1007,178" fill="rgba(0,56,168,0.12)"/>
-        <rect x="1015" y="0" width="5" height="720" fill="#E0001B"/>
-      </svg>
-      <div class="fiche-layout">
-        <div class="fL">
-          <div class="fL-top"></div>
-          <div class="fL-cut"></div>
-          <div class="fL-inner">
-            <div class="fbadge" id="f-badge">U17 NATIONAL</div>
-            <div class="fhome" id="f-home">RCSA</div>
-            <div class="fvs">vs</div>
-            <div class="faway" id="f-away">Adversaire</div>
-            <div class="fscore-row">
-              <div class="fscore" id="f-score">—</div>
-              <div class="fscore-info">
-                <div id="f-result">—</div>
-                <div id="f-ht">Mi-temps —</div>
-              </div>
-            </div>
-            <div class="fsep"></div>
-            <div class="flbl">Buteurs</div>
-            <div class="fscorers" id="f-scorers">—</div>
-            <div class="fsep"></div>
-            <div class="fL-foot">
-              <div class="flbl">Saison</div>
-              <div class="ffval" id="f-season">2025 – 2026</div>
-              <div class="flbl" style="margin-top:8px">Structure</div>
-              <div class="ffval">Racing Mutest Académie</div>
-            </div>
-          </div>
+      <div class="f-top">
+        <div class="f-brand">Racing Mutest Académie · <span id="f-badge">U17 National</span></div>
+        <div class="f-pill">Saison <span id="f-season">2026 – 2027</span></div>
+      </div>
+
+      <div class="f-hero">
+        <div class="f-team" id="f-home">RCSA</div>
+        <div class="f-mid">
+          <div class="f-scoreval" id="f-score">—</div>
+          <div class="f-sub" id="f-result">—</div>
+          <div class="f-htline" id="f-ht">Mi-temps —</div>
+          <div class="f-scorers" id="f-scorers"></div>
         </div>
-        <div class="fR">
-          <div>
-            <div class="fsh"><div class="fsh-bar b"></div><div class="fsh-t">Analyse du match</div></div>
-            <div class="fperiods">
-              <div class="fperiod">
-                <div class="fplbl" id="f-p1-lbl">1ère période</div>
-                <p id="f-p1">—</p>
-              </div>
-              <div class="fperiod">
-                <div class="fplbl" id="f-p2-lbl">2ème période</div>
-                <p id="f-p2">—</p>
-              </div>
-            </div>
-          </div>
-          <div class="fbottom">
-            <div class="fcol">
-              <div class="fsh"><div class="fsh-bar g"></div><div class="fsh-t">Points positifs</div></div>
-              <div id="f-pos"></div>
-            </div>
-            <div class="fcol">
-              <div class="fsh"><div class="fsh-bar r"></div><div class="fsh-t">Axes d'amélioration</div></div>
-              <div id="f-axe"></div>
-            </div>
-          </div>
-          <div class="fsynth">
-            <div class="fsynth-lbl">Synthèse</div>
-            <p id="f-synth">—</p>
-          </div>
+        <div class="f-team away" id="f-away">Adversaire</div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-glass"><h3><span class="f-ic"></span><span id="f-p1-lbl">1ère période</span></h3><p id="f-p1">—</p></div>
+        <div class="f-glass"><h3><span class="f-ic"></span><span id="f-p2-lbl">2ème période</span></h3><p id="f-p2">—</p></div>
+      </div>
+
+      <div class="f-stats">
+        <div class="f-stat-card">
+          <h3>Points positifs</h3>
+          <div id="f-pos"></div>
+        </div>
+        <div class="f-stat-card axes">
+          <h3>Axes d'amélioration</h3>
+          <div id="f-axe"></div>
         </div>
       </div>
-      <div class="fbot-bar"></div>
+
+      <div class="f-synth">
+        <div class="f-lbl">Synthèse</div>
+        <p id="f-synth">—</p>
+      </div>
     </div>
   </div>
 </div>
@@ -252,16 +225,22 @@ function setStatus(msg, type='') {
   el.textContent = msg; el.className = 'status ' + type;
 }
 
-function buildItems(items, cls) {
+function buildItems(items) {
   if (!items?.length) return '<span style="color:var(--tm);font-size:12px">—</span>';
   return items.map(it => `
-    <div class="fitem">
-      <div class="fdot ${cls}"></div>
+    <div class="f-stat-item">
+      <div class="f-ic"></div>
       <div>
-        <div class="fititle ${cls==='r'?'r':''}">${it.titre||''}</div>
-        <div class="fitext">${it.texte||''}</div>
+        <div class="f-t">${it.titre||''}</div>
+        <div class="f-d">${it.texte||''}</div>
       </div>
     </div>`).join('');
+}
+
+function buildScorers(buteurs) {
+  const arr = Array.isArray(buteurs) ? buteurs : (buteurs ? [buteurs] : []);
+  if (!arr.length) return '<span style="color:var(--tm);font-size:11px">—</span>';
+  return arr.map(n => `<span>⚽ ${n}</span>`).join('');
 }
 
 function setField(id, html) {
@@ -276,15 +255,15 @@ function fillFiche(d) {
   setField('f-score', d.score||'—');
   setField('f-result', d.result||'—');
   setField('f-ht', d.mi_temps||'—');
-  setField('f-scorers', Array.isArray(d.buteurs) ? d.buteurs.join('<br>') : (d.buteurs||'—'));
-  setField('f-season', d.saison||'2025 – 2026');
+  setField('f-scorers', buildScorers(d.buteurs));
+  setField('f-season', d.saison||'2026 – 2027');
   setField('f-p1-lbl', d.periode1_label||'1ère période');
   setField('f-p1', d.periode1||'—');
   setField('f-p2-lbl', d.periode2_label||'2ème période');
   setField('f-p2', d.periode2||'—');
   setField('f-synth', d.synthese||'—');
-  document.getElementById('f-pos').innerHTML = buildItems(d.positifs,'g');
-  document.getElementById('f-axe').innerHTML = buildItems(d.axes,'r');
+  document.getElementById('f-pos').innerHTML = buildItems(d.positifs);
+  document.getElementById('f-axe').innerHTML = buildItems(d.axes);
   document.getElementById('fiche').classList.add('visible');
   document.getElementById('empty').style.display = 'none';
   document.getElementById('btn-print').disabled = false;
@@ -331,7 +310,7 @@ async function createPDF() {
 
     const canvas = await html2canvas(fiche, {
       scale: 2,
-      backgroundColor: '#00102e',
+      backgroundColor: '#050915',
       useCORS: true
     });
 
@@ -357,7 +336,7 @@ function toggleEdit() {
   document.getElementById('btn-edit').textContent = editMode ? '✅ Terminer' : '✏️ Éditer';
   const ids = ['f-badge','f-home','f-away','f-score','f-result','f-ht','f-scorers','f-season','f-p1-lbl','f-p1','f-p2-lbl','f-p2','f-synth'];
   ids.forEach(id => { const el=document.getElementById(id); if(el) el.contentEditable = editMode; });
-  document.querySelectorAll('.fititle,.fitext').forEach(el => el.contentEditable = editMode);
+  document.querySelectorAll('.f-t,.f-d').forEach(el => el.contentEditable = editMode);
 }
 </script>
 </body>

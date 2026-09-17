@@ -24,7 +24,7 @@ Format JSON exact:
   "result": "Victoire",
   "mi_temps": "Mi-temps 1–1",
   "buteurs": ["Nom1", "Nom2"],
-  "saison": "2025 – 2026",
+  "saison": "2026 – 2027",
   "periode1_label": "1ère période",
   "periode1": "Analyse 2-3 phrases, style coach direct.",
   "periode2_label": "2ème période",
